@@ -8,8 +8,11 @@
         :name="key.name"
         :sound="key.audio"
         :letter="key.code"
-        @updateDisplay="updateDisplay"
-      ></DrumKey>
+        :ref="key.code"
+        :power="power"
+        :volume="volume"
+        
+      ></DrumKey><!-- @updateDisplay="updateDisplay" -->
     </div>
   </div>
 </template>
@@ -17,6 +20,7 @@
 <script>
 import DrumKey from "./DrumKey.vue";
 export default {
+  props: ['power', 'volume'],
   components: {
     DrumKey,
   },
@@ -71,6 +75,16 @@ export default {
       ],
       display: ''
     };
+  },
+  mounted() {
+    document.addEventListener('keypress', (e) => {
+      let ref = e.key.toUpperCase();
+      try {
+        this.$refs[ref].playSound() 
+      } catch (error) {
+        return;
+      }
+    })
   },
   methods: {
     updateDisplay(val) {
