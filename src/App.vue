@@ -51,4 +51,8 @@ main {
   align-items: center;
   height: 90vh;
 }
+
+header {
+  display: fixed;
+}
 </style>

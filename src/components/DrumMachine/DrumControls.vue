@@ -22,6 +22,11 @@ export default {
       volume: 1 
     }
   },
+  computed: {
+    clips() {
+      return [].slice.call(document.getElementsByClassName('clip'))
+    }
+  },
   methods: {
     setPower(event) {
       const powerIsOn = event.target.checked;
@@ -34,7 +39,10 @@ export default {
     },
     setVolume(event) {
       let volLevel = event.target.value / 100;
-      this.$emit('adjustVolume', volLevel)
+      // this.$emit('adjustVolume', volLevel);
+      this.clips.forEach(sound => {
+        sound.volume = volLevel
+      })
       // this.volume = event.target.value / 100;
     }
   }
