@@ -1,7 +1,7 @@
 <template>
   <button class="drum-pad" type="button" :id="name" @click="playSound">
     {{ letter
-    }}<audio :id="letter" class="clip" :src="sound"></audio>
+    }}<audio :id="letter" class="clip" :src="sound" preload="auto"></audio>
   </button>
 </template>
 
